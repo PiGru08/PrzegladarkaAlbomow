@@ -54,5 +54,14 @@ public class MainActivity extends AppCompatActivity {
         textViewPobrania = findViewById(R.id.textViewDoPobrania);
         textViewRok = findViewById(R.id.textViewLiczbaRokPiosenkek);
         textViewZespol = findViewById(R.id.textViewZespol);
+
+        wyswietlPiesn(0);
+    }
+    private void wyswietlPiesn(int i){
+        Album album = albumy.get(i);
+        textViewZespol.setText(album.getWykonawca());
+        textViewRok.setText(String.valueOf(album.getRok())+" "+String.valueOf(album.getLiczbaUwtworow()));
+        textViewPobrania.setText(String.valueOf(album.getPobrania()));
+        textViewNazwaPiosenki.setText(album.getNazwaUtworu());
     }
 }
