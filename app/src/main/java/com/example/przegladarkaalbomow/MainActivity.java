@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     TextView textViewNazwaPiosenki;
     TextView textViewRok;
     TextView textViewPobrania;
+    int strona = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,25 +29,35 @@ public class MainActivity extends AppCompatActivity {
         albumy.add(new Album("Gorillaz","The Now Now",2018,11,11000102));
         albumy.add(new Album("My Chemical Romance","The Black Parade",2006,14,304666444));
         albumy.add(new Album("Wilki","wilki",1992,16,4000230));
-
         buttonDalej = findViewById(R.id.imageButtonPrawo);
         buttonDalej.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                strona++;
+                if(strona == albumy.size()){
+                    strona = 0;
+                }
+                wyswietlPiesn(strona);
             }
         });
         buttonWstecz = findViewById(R.id.imageButtonLewo);
         buttonWstecz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                strona--;
+                if(strona < 0){
+                    strona = albumy.size()-1;
+                }
+                wyswietlPiesn(strona);
             }
         });
         buttonPobierz = findViewById(R.id.button3);
         buttonPobierz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                albumy.get(strona).zwiekszPobrania();
+                textViewPobrania.setText(String.valueOf(albumy.get(strona).getPobrania()));
+
 
             }
         });
@@ -58,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         wyswietlPiesn(0);
     }
     private void wyswietlPiesn(int i){
-        Album album = albumy.get(i);
+        Album album = albumy.get(strona);
         textViewZespol.setText(album.getWykonawca());
         textViewRok.setText(String.valueOf(album.getRok())+" "+String.valueOf(album.getLiczbaUwtworow()));
         textViewPobrania.setText(String.valueOf(album.getPobrania()));
