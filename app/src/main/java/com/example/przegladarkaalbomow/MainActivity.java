@@ -4,7 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
+
+    ArrayList<Album> albumy = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
